@@ -15,6 +15,8 @@
    Formato: [pregunta, respuesta correcta, respuesta incorrecta].
    Para agregar contenido basta con sumar una línea nueva.
    En cada partida se eligen al azar, sin repetir. */
+
+/*
 const Q=[
 ["¿Cómo se conoce a Santiago del Estero?","Madre de Ciudades","Ciudad Eterna"],
 ["¿Qué baile típico es muy famoso en Santiago del Estero?","Chacarera","Tango"],
@@ -33,7 +35,9 @@ const Q=[
 ["¿Cuántas patas tiene una araña?","8","6"],
 ["¿Qué país tiene forma de bota?","Italia","Chile"]
 ];
+*/
 
+//LAS PREGUNTAS se cargan desde el archivo preguntas.js.
 
 /* ---- 2. MAPA DE TECLAS ----
    La Pico 2W se comporta como un teclado. Cada letra se traduce a
@@ -95,7 +99,13 @@ function hud(){
 
 /* 7.1 Pantalla de inicio: reinicia todo y espera a los dos jugadores. */
 function title(){
-  state='title';ready={1:false,2:false};s={1:0,2:0};n=0;clear();hud();draw()
+  state='title';
+  ready={1:false,2:false};
+  s={1:0,2:0};
+  n=0;
+  clear();
+  hud();
+  draw()
 }
 
 /* Dibuja la pantalla de inicio con el estado de cada jugador

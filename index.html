@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+  QUIZ de cultura Santiagueña
+  Archivo: index.html  ->  ESTRUCTURA de la página.
+  Los tres archivos deben estar en la misma carpeta:
+    index.html  (estructura)  |  style.css (aspecto)  |  script.js (lógica del juego)
+  Para jugar, abrir index.html en el navegador con la Pico 2W conectada por USB.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QUIZ de cultura Santiagueña</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Barra superior (HUD): puntaje del Jugador 1, ronda actual y puntaje del Jugador 2.
+     script.js la muestra solo mientras se juega. -->
+<div id="hud">
+  <div class="s s1">Jugador 1: <span id="s1">0</span></div>
+  <div id="info"></div>
+  <div class="s s2">Jugador 2: <span id="s2">0</span></div>
+</div>
+
+<!-- Área principal: script.js reemplaza su contenido según la pantalla
+     (inicio, cuenta regresiva, pregunta, resultado, festejo). -->
+<main id="screen"></main>
+
+<script src="script.js"></script>
+</body>
+</html>

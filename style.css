@@ -1,0 +1,69 @@
+/* =====================================================
+   QUIZ de cultura Santiagueña  -  style.css
+   Define el ASPECTO del juego. Se divide en módulos.
+   ===================================================== */
+
+/* ---- 1. Variables de color y ajustes generales ----
+   Los colores se definen una sola vez y se reutilizan.
+   --blue / --green: coinciden con los botones físicos.
+   --p1 / --p2: color de cada jugador. */
+:root{--bg1:#1b1446;--bg2:#3a1c71;--tx:#fff;--blue:#2f6fed;--green:#22a55b;--white:#f4f4f4;--p1:#ffb703;--p2:#ff5d8f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1b1446;--bg2:#3a1c71}}
+:root[data-theme="dark"]{--bg1:#1b1446;--bg2:#3a1c71}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+
+/* ---- 2. Fondo y disposición de la página ---- */
+body{background:#1b1446 linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--tx);font-family:"Trebuchet MS",Verdana,sans-serif;display:flex;flex-direction:column;overflow:hidden}
+
+/* ---- 3. HUD: barra de puntajes (Jugador 1 izquierda, Jugador 2 derecha) ---- */
+#hud{display:none;justify-content:space-between;align-items:center;padding:12px 20px;font-size:clamp(18px,3vw,32px);font-weight:bold}
+#hud .s{padding:8px 22px;border-radius:14px;background:#0003}
+#hud .s1{border-bottom:5px solid var(--p1)}
+#hud .s2{border-bottom:5px solid var(--p2)}
+
+/* ---- 4. Área central: todas las pantallas se dibujan aquí ---- */
+#screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px 24px;gap:20px}
+h1{font-size:clamp(32px,7vw,76px);margin:0;line-height:1.1;text-shadow:0 4px 0 #0005}
+
+/* ---- 5. Pantalla de inicio ----
+   .big: mensaje que late.  .ready/.pl: tarjetas de estado de cada jugador
+   (se pintan de verde cuando el jugador ya presionó el botón blanco). */
+.big{font-size:clamp(22px,4vw,44px);font-weight:bold;animation:pulse 1.2s infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.ready{display:flex;gap:24px;flex-wrap:nowrap;justify-content:center;width:100%;max-width:1000px}
+.pl{padding:18px 30px;border-radius:18px;background:#0004;font-size:clamp(18px,3vw,30px);min-width:0;flex:1;border:4px solid transparent}
+.pl.on{background:#22a55b55;border-color:var(--green)}
+
+/* ---- 6. Cuenta regresiva (3, 2, 1) ---- */
+.num{font-size:clamp(100px,24vw,260px);font-weight:900;line-height:1}
+
+/* ---- 7. Pregunta y opciones ----
+   Azul a la izquierda, verde a la derecha.
+   .dim / .good: al mostrar el resultado, atenúan la opción
+   incorrecta y resaltan la correcta. */
+.q{font-size:clamp(26px,5vw,56px);font-weight:bold;max-width:1000px}
+.opts{display:flex;gap:24px;width:100%;max-width:1000px;flex-wrap:nowrap}
+.o{flex:1;min-width:0;padding:24px;border-radius:20px;font-size:clamp(22px,4vw,44px);font-weight:bold;transition:.3s}
+.o small{display:block;font-size:.4em;opacity:.85;margin-bottom:6px}
+.o.b{background:var(--blue)}
+.o.g{background:var(--green)}
+.o.dim{opacity:.3}
+.o.good{outline:8px solid #fff;transform:scale(1.04)}
+
+/* ---- 8. Avisos, turno y barra de tiempo ----
+   .turn: indica qué jugador responde (con su color).
+   .bar: barra que se vacía en 5 segundos (la animación se activa desde script.js). */
+.hint{font-size:clamp(16px,2.4vw,26px);opacity:.9}
+.turn{font-size:clamp(24px,4vw,44px);font-weight:bold;padding:8px 26px;border-radius:14px;color:#222}
+.turn.p1{background:var(--p1)}
+.turn.p2{background:var(--p2)}
+.bar{width:min(700px,90%);height:18px;background:#0005;border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:#fff;transition:width 5s linear}
+.fb{font-size:clamp(26px,5vw,52px);font-weight:bold}
+
+/* ---- 9. Pantalla de festejo: trofeo y confeti ----
+   Cada pieza de confeti (.c) cae con la animación "fall". */
+.trophy{font-size:clamp(80px,16vw,180px)}
+.c{position:fixed;top:-20px;width:12px;height:18px;animation:fall linear forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
